@@ -1,0 +1,154 @@
+{
+  "info": {
+    "name": "Embeddings API",
+    "description": "Test collection for Embeddings API with text embedding and event comparison",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "item": [
+        {
+          "name": "Root - Health",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                ""
+              ]
+            },
+            "description": "Basic health check endpoint"
+          },
+          "response": []
+        },
+        {
+          "name": "Health - With Embedding Dimension",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/health",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "health"
+              ]
+            },
+            "description": "Health check with embedding dimension info"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Embeddings",
+      "item": [
+        {
+          "name": "Create Embedding",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"I love hiking and outdoor activities in nature\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/create-embedding",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "create-embedding"
+              ]
+            },
+            "description": "Create an embedding vector for the given text"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Similarity",
+      "item": [
+        {
+          "name": "Compare Events - Text Based",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_profile\": \"I love outdoor activities, hiking, and spending time in nature with friends\",\n  \"events\": [\n    {\n      \"event_id\": \"event_001\",\n      \"name\": \"Mountain Hiking Adventure\",\n      \"description\": \"Join us for an exciting hiking trip in the Rocky Mountains. We will explore beautiful trails and enjoy scenic views.\"\n    },\n    {\n      \"event_id\": \"event_002\",\n      \"name\": \"Tech Conference 2024\",\n      \"description\": \"Annual technology conference featuring talks on AI, machine learning, and software development. Network with industry professionals.\"\n    },\n    {\n      \"event_id\": \"event_003\",\n      \"name\": \"Beach Volleyball Tournament\",\n      \"description\": \"Competitive beach volleyball tournament with teams from the region. Perfect for outdoor sports enthusiasts.\"\n    },\n    {\n      \"event_id\": \"event_004\",\n      \"name\": \"Data Science Workshop\",\n      \"description\": \"Hands-on workshop on data analysis, Python programming, and statistical methods for professionals.\"\n    },\n    {\n      \"event_id\": \"event_005\",\n      \"name\": \"Forest Conservation Cleanup\",\n      \"description\": \"Environmental initiative to clean up local forests and preserve nature. Join volunteers from the community.\"\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/compare-events",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "compare-events"
+              ]
+            },
+            "description": "Compare user profile text with event texts. Returns events ranked by similarity score (highest first)."
+          },
+          "response": []
+        },
+        {
+          "name": "Compare Events - Simple Example",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_profile\": \"I like programming and technology\",\n  \"events\": [\n    {\n      \"event_id\": \"1\",\n      \"name\": \"Python Workshop\",\n      \"description\": \"Learn Python programming for beginners\"\n    },\n    {\n      \"event_id\": \"2\",\n      \"name\": \"Cooking Class\",\n      \"description\": \"Learn Italian cooking techniques\"\n    },\n    {\n      \"event_id\": \"3\",\n      \"name\": \"Web Development Bootcamp\",\n      \"description\": \"Advanced web development with JavaScript and React\"\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/compare-events",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "compare-events"
+              ]
+            },
+            "description": "Simple example comparing tech interests with 3 events"
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
